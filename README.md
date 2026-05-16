@@ -5,22 +5,49 @@
 
 ---
 
-## 🚀 Quick Start
+## 🪟 Windows Setup
 
-### 1. Install Rust
+### Step 1 — Install Rust
+Download and run the installer from:
+👉 https://rustup.rs
+
+### Step 2 — Install MinGW64 (Windows Linker)
+Download from:
+👉 https://www.mingw-w64.org
+
+After installing, add to PATH:
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+set PATH=C:\mingw64\bin;%PATH%
 ```
-> Windows users: download from [rustup.rs](https://rustup.rs)
 
-### 2. Clone & Build
+### Step 3 — Set GNU Toolchain
+```bash
+rustup toolchain install stable-x86_64-pc-windows-gnu
+rustup default stable-x86_64-pc-windows-gnu
+```
+
+### Step 4 — Clone & Run
 ```bash
 git clone https://github.com/hemil-59s/qr-generator
 cd qr-generator
-cargo build --release
+cargo run -- --text "https://yourlink.com" --output qr.png
 ```
 
-### 3. Generate QR Code
+---
+
+## 🐧 Linux / Mac Setup
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+git clone https://github.com/hemil-59s/qr-generator
+cd qr-generator
+cargo run -- --text "https://yourlink.com" --output qr.png
+```
+
+---
+
+## 🚀 Usage Examples
+
 ```bash
 # Any URL
 cargo run -- --text "https://yourlink.com" --output qr.png
@@ -28,22 +55,26 @@ cargo run -- --text "https://yourlink.com" --output qr.png
 # SVG format
 cargo run -- --text "https://yourlink.com" --output qr.svg
 
-# WhatsApp
+# WhatsApp link
 cargo run -- --text "https://wa.me/919876543210" --output whatsapp.png
+
+# Plain text
+cargo run -- --text "Hello World" --output hello.png
 ```
 
 ---
 
 ## ⚙️ Options
 
-| Flag | Default | Description |
+| Flag | Required | Description |
 |------|---------|-------------|
-| `--text` | required | URL or text to encode |
-| `--output` | `qr.png` | Output file (.png or .svg) |
+| `--text` | ✅ Yes | URL or text to encode |
+| `--output` | ❌ No (default: qr.png) | Output filename (.png or .svg) |
 
 ---
 
 ## 🛠️ Built With
+
 - **Rust** — Systems programming language
 - **qrcode-rs** — QR encoding
 - **image-rs** — Image processing
@@ -51,4 +82,5 @@ cargo run -- --text "https://wa.me/919876543210" --output whatsapp.png
 ---
 
 ## 📄 License
+
 MIT © [hemil-59s](https://github.com/hemil-59s)
